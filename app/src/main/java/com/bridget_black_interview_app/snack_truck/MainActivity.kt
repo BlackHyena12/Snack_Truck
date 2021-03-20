@@ -1,14 +1,10 @@
 package com.bridget_black_interview_app.snack_truck
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-
-// TODO: remove TAG after project completion.
-private const val TAG = "MainActivity"
 
 /**
  * MainActivity gathers a user's Snack Truck order and submits it to be processed.
@@ -28,18 +24,12 @@ class MainActivity : AppCompatActivity() {
      * completion and resets [MainActivity] for the next user order.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        // TODO: remove TAG after project completion.
-        Log.d(TAG, "onCreate called")
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val orderSubmit = findViewById<Button>(R.id.button_order)
 
         orderSubmit.setOnClickListener {
-            // TODO: remove TAG after project completion.
-            Log.d(TAG, "setOnClickListener called")
-
             // Build order summary.
             buildOrderSummary()
             // Show the AlertDialog and place order.
@@ -50,9 +40,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun buildOrderSummary() {
-        // TODO: remove TAG after project completion.
-        Log.d(TAG, "buildOrderSummary called")
-
         // Status of each checkbox to build orderItems String with.
         val checkboxFrenchFries: CheckBox = findViewById(R.id.checkBox_french_frie)
         val checkboxVeggieburger: CheckBox = findViewById(R.id.checkBox_veggieburger)
@@ -103,9 +90,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showOrderSummary() {
-        // TODO: remove TAG after project completion.
-        Log.d(TAG, "showOrderSummary called")
-
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setTitle("Place an order for:")
         builder.setMessage(_orderItems)
@@ -135,9 +119,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun deselectCheckBoxes() {
-        // TODO: remove TAG after project completion.
-        Log.d(TAG, "deselectCheckBoxes called")
-
         for (snack in checkedBoxes) {
             snack.toggle()
         }

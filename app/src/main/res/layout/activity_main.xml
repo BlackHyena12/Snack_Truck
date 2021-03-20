@@ -6,14 +6,107 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/button_order"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/order_button"
-        app:backgroundTint="#90AF6C"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/checkBox_french_frie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="French Fries"
+                android:textColor="#90AF6C"
+                app:buttonTint="#90AF6C" />
+
+            <CheckBox
+                android:id="@+id/checkBox_veggieburger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Veggieburger"
+                android:textColor="#90AF6C"
+                app:buttonTint="#90AF6C" />
+
+            <CheckBox
+                android:id="@+id/checkBox_carrot"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="Carrots"
+                android:textColor="#90AF6C"
+                app:buttonTint="#90AF6C" />
+
+            <CheckBox
+                android:id="@+id/checkBox_apple"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apple"
+                android:textColor="#90AF6C"
+                app:buttonTint="#90AF6C" />
+
+            <CheckBox
+                android:id="@+id/checkBox_banana"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Banana"
+                android:textColor="#90AF6C"
+                app:buttonTint="#90AF6C" />
+
+            <CheckBox
+                android:id="@+id/checkBox_milkshake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Milkshake"
+                android:textColor="#90AF6C"
+                app:buttonTint="#90AF6C" />
+
+            <CheckBox
+                android:id="@+id/checkBox_cheeseburger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cheeseburger"
+                android:textColor="#D30808"
+                app:buttonTint="#D30808" />
+
+            <CheckBox
+                android:id="@+id/checkBox_hamburger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hamburger"
+                android:textColor="#D30808"
+                app:buttonTint="#D30808" />
+
+            <CheckBox
+                android:id="@+id/checkBox_hot_dog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hot Dog"
+                android:textColor="#D30808"
+                app:buttonTint="#D30808" />
+
+            <TextView
+                android:id="@+id/textView_order_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/button_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/order_button"
+                app:backgroundTint="#90AF6C" />
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

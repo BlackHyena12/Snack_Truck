@@ -1,16 +1,23 @@
 package com.bridget_black_interview_app.snack_truck
 
+import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
-import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
+/*
+TODO: remove TAG after project completion.
+*/
+private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
     // Concatenate the order items into a message to be displayed in the orderSummary TextView.
     private var orderItems: String? = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d(TAG, "onCreate called")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -25,11 +32,9 @@ class MainActivity : AppCompatActivity() {
         val checkboxHamburger = findViewById<CheckBox>(R.id.checkBox_hamburger)
         val checkboxHotDog = findViewById<CheckBox>(R.id.checkBox_hot_dog)
 
-        // Locally hold the orderSummary TextView Widget to insert the orderItem String in later.
-        val orderSummary = findViewById<TextView>(R.id.textView_order_summary)
-
         val orderSubmit = findViewById<Button>(R.id.button_order)
         orderSubmit.setOnClickListener {
+            Log.d(TAG, "setOnClickListener called")
             if (checkboxFrenchFrie.isChecked) {
                 orderItems += "French Fries\n"
             }
@@ -57,10 +62,29 @@ class MainActivity : AppCompatActivity() {
             if (checkboxHotDog.isChecked) {
                 orderItems += "Hot Dog\n"
             }
-
-            // Display the orderSummary to the user when the orderSubmit Button is clicked.
-            orderSummary.text = "Your order contains:\n$orderItems"
+            showOrderSummary(this)
         }
+    }
+
+    fun showOrderSummary(view: MainActivity) {
+        Log.d(TAG, "AppDialog called")
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Show Simple Dialog")
+        builder.setMessage("Your order contains:\n$orderItems")
+        builder.setIcon(R.drawable.ic_launcher_background)
+
+        builder.setPositiveButton("positive", DialogInterface.OnClickListener { dialog, which ->
+            dialog.dismiss()
+        })
+        builder.setNegativeButton("negative", DialogInterface.OnClickListener { dialog, which ->
+            dialog.dismiss()
+        })
+        builder.setNeutralButton("neutral", DialogInterface.OnClickListener { dialog, which ->
+            dialog.dismiss()
+        })
+
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.show()
     }
 }
 

@@ -1,6 +1,13 @@
 <resources>
-    <string name="app_name">Snack_Truck</string>
+    <string name="app_name">Snack Truck</string>
     <string name="order_button">Order</string>
-<!--    <string name="ok">Order</string>-->
-<!--    <string name="finish">Finish</string>-->
+    <string name="french_fries">French Fries</string>
+    <string name="veggieburger">Veggieburger</string>
+    <string name="carrots">Carrots</string>
+    <string name="apple">Apple</string>
+    <string name="banana">Banana</string>
+    <string name="milkshake">Milkshake</string>
+    <string name="cheeseburger">Cheeseburger</string>
+    <string name="hamburger">Hamburger</string>
+    <string name="hot_dog">Hot Dog</string>
 </resources>

@@ -1,6 +1,5 @@
 package com.bridget_black_interview_app.snack_truck
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -8,83 +7,134 @@ import android.widget.CheckBox
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
-/*
-TODO: remove TAG after project completion.
-*/
+// TODO: remove TAG after project completion.
 private const val TAG = "MainActivity"
+
+/**
+ * MainActivity gathers a user's Snack Truck order and submits it to be processed.
+ *
+ * @author Bridget Black
+ * 2021-03-19
+ * Last Updated: 2021-03-20
+ */
 class MainActivity : AppCompatActivity() {
     // Concatenate the order items into a message to be displayed in the orderSummary TextView.
-    private var orderItems: String? = ""
+    private var _orderItems: String? = ""
 
+    /**
+     * Create [MainActivity] and listens for a user to submit an order, sends order for
+     * completion and resets [MainActivity] for the next user order.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
+        // TODO: remove TAG after project completion.
         Log.d(TAG, "onCreate called")
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Locally hold the status of each checkbox to build orderItems String with.
-        val checkboxFrenchFrie = findViewById<CheckBox>(R.id.checkBox_french_frie)
-        val checkboxVeggieburger = findViewById<CheckBox>(R.id.checkBox_veggieburger)
-        val checkboxCarrot = findViewById<CheckBox>(R.id.checkBox_carrot)
-        val checkboxApple = findViewById<CheckBox>(R.id.checkBox_apple)
-        val checkboxBanana = findViewById<CheckBox>(R.id.checkBox_banana)
-        val checkboxMilkshake = findViewById<CheckBox>(R.id.checkBox_milkshake)
-        val checkboxCheeseburger = findViewById<CheckBox>(R.id.checkBox_cheeseburger)
-        val checkboxHamburger = findViewById<CheckBox>(R.id.checkBox_hamburger)
-        val checkboxHotDog = findViewById<CheckBox>(R.id.checkBox_hot_dog)
-
         val orderSubmit = findViewById<Button>(R.id.button_order)
+
         orderSubmit.setOnClickListener {
+            // TODO: remove TAG after project completion.
             Log.d(TAG, "setOnClickListener called")
-            if (checkboxFrenchFrie.isChecked) {
-                orderItems += "French Fries\n"
-            }
-            if (checkboxVeggieburger.isChecked) {
-                orderItems += "Veggieburger\n"
-            }
-            if (checkboxCarrot.isChecked) {
-                orderItems += "Carrots\n"
-            }
-            if (checkboxApple.isChecked) {
-                orderItems += "Apple\n"
-            }
-            if (checkboxBanana.isChecked) {
-                orderItems += "Banana\n"
-            }
-            if (checkboxMilkshake.isChecked) {
-                orderItems += "Milkshake\n"
-            }
-            if (checkboxCheeseburger.isChecked) {
-                orderItems += "Cheeseburger\n"
-            }
-            if (checkboxHamburger.isChecked) {
-                orderItems += "Hamburger\n"
-            }
-            if (checkboxHotDog.isChecked) {
-                orderItems += "Hot Dog\n"
-            }
-            showOrderSummary(this)
+
+            // Build order summary.
+            buildOrderSummary()
+            // Show the AlertDialog and place order.
+            showOrderSummary()
+            // Clear order items/summary for next user.
+            _orderItems = ""
         }
     }
 
-    fun showOrderSummary(view: MainActivity) {
-        Log.d(TAG, "AppDialog called")
-        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-        builder.setTitle("Show Simple Dialog")
-        builder.setMessage("Your order contains:\n$orderItems")
-        builder.setIcon(R.drawable.ic_launcher_background)
+    private fun buildOrderSummary() {
+        // TODO: remove TAG after project completion.
+        Log.d(TAG, "buildOrderSummary called")
 
-        builder.setPositiveButton("positive", DialogInterface.OnClickListener { dialog, which ->
+        // Status of each checkbox to build orderItems String with.
+        val checkboxFrenchFries: CheckBox = findViewById(R.id.checkBox_french_frie)
+        val checkboxVeggieburger: CheckBox = findViewById(R.id.checkBox_veggieburger)
+        val checkboxCarrot: CheckBox = findViewById(R.id.checkBox_carrot)
+        val checkboxApple: CheckBox = findViewById(R.id.checkBox_apple)
+        val checkboxBanana: CheckBox = findViewById(R.id.checkBox_banana)
+        val checkboxMilkshake: CheckBox = findViewById(R.id.checkBox_milkshake)
+        val checkboxCheeseburger: CheckBox = findViewById(R.id.checkBox_cheeseburger)
+        val checkboxHamburger: CheckBox = findViewById(R.id.checkBox_hamburger)
+        val checkboxHotDog: CheckBox = findViewById(R.id.checkBox_hot_dog)
+
+        if (checkboxFrenchFries.isChecked) {
+            _orderItems += "French Fries\n"
+            deselectCheckBoxes(checkboxFrenchFries)
+        }
+        if (checkboxVeggieburger.isChecked) {
+            _orderItems += "Veggieburger\n"
+            deselectCheckBoxes(checkboxVeggieburger)
+        }
+        if (checkboxCarrot.isChecked) {
+            _orderItems += "Carrots\n"
+            deselectCheckBoxes(checkboxCarrot)
+        }
+        if (checkboxApple.isChecked) {
+            _orderItems += "Apple\n"
+            deselectCheckBoxes(checkboxApple)
+        }
+        if (checkboxBanana.isChecked) {
+            _orderItems += "Banana\n"
+            deselectCheckBoxes(checkboxBanana)
+        }
+        if (checkboxMilkshake.isChecked) {
+            _orderItems += "Milkshake\n"
+            deselectCheckBoxes(checkboxMilkshake)
+        }
+        if (checkboxCheeseburger.isChecked) {
+            _orderItems += "Cheeseburger\n"
+            deselectCheckBoxes(checkboxCheeseburger)
+        }
+        if (checkboxHamburger.isChecked) {
+            _orderItems += "Hamburger\n"
+            deselectCheckBoxes(checkboxHamburger)
+        }
+        if (checkboxHotDog.isChecked) {
+            _orderItems += "Hot Dog\n"
+            deselectCheckBoxes(checkboxHotDog)
+        }
+    }
+
+    private fun deselectCheckBoxes(view: CheckBox) {
+        // TODO: remove TAG after project completion.
+        Log.d(TAG, "deselectCheckBoxes called")
+
+        view.toggle()
+    }
+
+    private fun showOrderSummary() {
+        // TODO: remove TAG after project completion.
+        Log.d(TAG, "showOrderSummary called")
+
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle("Place an order for:")
+        builder.setMessage(_orderItems)
+
+        builder.setPositiveButton("Purchase") { dialog, which ->
+            // Stub for sending the order.
+            completeTransaction(_orderItems)
+
+            /*
+            After the order submission and checkbox deselect are successful, close the AlertDialog. If unsuccessful, alert
+            the user and proceed with failure causes.
+             */
             dialog.dismiss()
-        })
-        builder.setNegativeButton("negative", DialogInterface.OnClickListener { dialog, which ->
+        }
+        builder.setNegativeButton("Cancel") { dialog, which ->
             dialog.dismiss()
-        })
-        builder.setNeutralButton("neutral", DialogInterface.OnClickListener { dialog, which ->
-            dialog.dismiss()
-        })
+        }
 
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
+    }
+
+    private fun completeTransaction(_orderItems: String?) {
+        // TODO: Network service for actually placing the order isn't built yet, place call here.
     }
 }
 

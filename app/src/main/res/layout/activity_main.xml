@@ -28,72 +28,81 @@
                 android:id="@+id/checkBox_french_frie"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="French Fries"
-                android:textColor="#90AF6C"
-                app:buttonTint="#90AF6C" />
+                android:text="@string/french_fries"
+                android:textColor="#54910C"
+                android:textStyle="bold"
+                app:buttonTint="#54910C" />
 
             <CheckBox
                 android:id="@+id/checkBox_veggieburger"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Veggieburger"
-                android:textColor="#90AF6C"
-                app:buttonTint="#90AF6C" />
+                android:text="@string/veggieburger"
+                android:textColor="#54910C"
+                android:textStyle="bold"
+                app:buttonTint="#54910C" />
 
             <CheckBox
                 android:id="@+id/checkBox_carrot"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
-                android:text="Carrots"
-                android:textColor="#90AF6C"
-                app:buttonTint="#90AF6C" />
+                android:text="@string/carrots"
+                android:textColor="#54910C"
+                android:textStyle="bold"
+                app:buttonTint="#54910C" />
 
             <CheckBox
                 android:id="@+id/checkBox_apple"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Apple"
-                android:textColor="#90AF6C"
-                app:buttonTint="#90AF6C" />
+                android:text="@string/apple"
+                android:textColor="#54910C"
+                android:textStyle="bold"
+                app:buttonTint="#54910C" />
 
             <CheckBox
                 android:id="@+id/checkBox_banana"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Banana"
-                android:textColor="#90AF6C"
-                app:buttonTint="#90AF6C" />
+                android:text="@string/banana"
+                android:textColor="#54910C"
+                android:textStyle="bold"
+                app:buttonTint="#54910C" />
 
             <CheckBox
                 android:id="@+id/checkBox_milkshake"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Milkshake"
-                android:textColor="#90AF6C"
-                app:buttonTint="#90AF6C" />
+                android:text="@string/milkshake"
+                android:textColor="#54910C"
+                android:textStyle="bold"
+                app:buttonTint="#54910C" />
 
             <CheckBox
                 android:id="@+id/checkBox_cheeseburger"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cheeseburger"
+                android:text="@string/cheeseburger"
                 android:textColor="#D30808"
+                android:textStyle="bold"
                 app:buttonTint="#D30808" />
 
             <CheckBox
                 android:id="@+id/checkBox_hamburger"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hamburger"
+                android:text="@string/hamburger"
                 android:textColor="#D30808"
+                android:textStyle="bold"
                 app:buttonTint="#D30808" />
 
             <CheckBox
                 android:id="@+id/checkBox_hot_dog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hot Dog"
+                android:text="@string/hot_dog"
                 android:textColor="#D30808"
+                android:textStyle="bold"
                 app:buttonTint="#D30808" />
 
         </LinearLayout>
@@ -105,9 +114,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:onClick="showOrderSummary"
         android:text="@string/order_button"
-        app:backgroundTint="#90AF6C"
+        app:backgroundTint="#54910C"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

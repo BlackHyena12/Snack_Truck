@@ -20,6 +20,8 @@ private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity() {
     // Concatenate the order items into a message to be displayed in the orderSummary TextView.
     private var _orderItems: String? = ""
+    // Mutable list of the Checkboxes for deselecting after a completed or canceled order.
+    private val checkedBoxes: MutableList<CheckBox> = mutableListOf()
 
     /**
      * Create [MainActivity] and listens for a user to submit an order, sends order for
@@ -64,47 +66,40 @@ class MainActivity : AppCompatActivity() {
 
         if (checkboxFrenchFries.isChecked) {
             _orderItems += "French Fries\n"
-            deselectCheckBoxes(checkboxFrenchFries)
+            checkedBoxes.add(checkboxFrenchFries)
         }
         if (checkboxVeggieburger.isChecked) {
             _orderItems += "Veggieburger\n"
-            deselectCheckBoxes(checkboxVeggieburger)
+            checkedBoxes.add(checkboxVeggieburger)
         }
         if (checkboxCarrot.isChecked) {
             _orderItems += "Carrots\n"
-            deselectCheckBoxes(checkboxCarrot)
+            checkedBoxes.add(checkboxCarrot)
         }
         if (checkboxApple.isChecked) {
             _orderItems += "Apple\n"
-            deselectCheckBoxes(checkboxApple)
+            checkedBoxes.add(checkboxApple)
         }
         if (checkboxBanana.isChecked) {
             _orderItems += "Banana\n"
-            deselectCheckBoxes(checkboxBanana)
+            checkedBoxes.add(checkboxBanana)
         }
         if (checkboxMilkshake.isChecked) {
             _orderItems += "Milkshake\n"
-            deselectCheckBoxes(checkboxMilkshake)
+            checkedBoxes.add(checkboxMilkshake)
         }
         if (checkboxCheeseburger.isChecked) {
             _orderItems += "Cheeseburger\n"
-            deselectCheckBoxes(checkboxCheeseburger)
+            checkedBoxes.add(checkboxCheeseburger)
         }
         if (checkboxHamburger.isChecked) {
             _orderItems += "Hamburger\n"
-            deselectCheckBoxes(checkboxHamburger)
+            checkedBoxes.add(checkboxHamburger)
         }
         if (checkboxHotDog.isChecked) {
             _orderItems += "Hot Dog\n"
-            deselectCheckBoxes(checkboxHotDog)
+            checkedBoxes.add(checkboxHotDog)
         }
-    }
-
-    private fun deselectCheckBoxes(view: CheckBox) {
-        // TODO: remove TAG after project completion.
-        Log.d(TAG, "deselectCheckBoxes called")
-
-        view.toggle()
     }
 
     private fun showOrderSummary() {
@@ -124,17 +119,31 @@ class MainActivity : AppCompatActivity() {
             the user and proceed with failure causes.
              */
             dialog.dismiss()
+            // Clear the CheckBoxes.
+            deselectCheckBoxes()
+            // Clear the CheckBox List.
+            checkedBoxes.clear()
         }
         builder.setNegativeButton("Cancel") { dialog, which ->
             dialog.dismiss()
+            // Clear the CheckBox List.
+            checkedBoxes.clear()
         }
 
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
     }
 
+    private fun deselectCheckBoxes() {
+        // TODO: remove TAG after project completion.
+        Log.d(TAG, "deselectCheckBoxes called")
+
+        for (snack in checkedBoxes) {
+            snack.toggle()
+        }
+    }
+
     private fun completeTransaction(_orderItems: String?) {
         // TODO: Network service for actually placing the order isn't built yet, place call here.
     }
 }
-

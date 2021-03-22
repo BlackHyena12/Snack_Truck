@@ -31,7 +31,7 @@
                 android:text="@string/french_fries"
                 android:textColor="#54910C"
                 android:textStyle="bold"
-                app:buttonTint="#54910C" />
+                app:buttonTint="#007144" />
 
             <CheckBox
                 android:id="@+id/checkBox_veggieburger"
@@ -40,16 +40,16 @@
                 android:text="@string/veggieburger"
                 android:textColor="#54910C"
                 android:textStyle="bold"
-                app:buttonTint="#54910C" />
+                app:buttonTint="#007144" />
 
             <CheckBox
                 android:id="@+id/checkBox_carrot"
                 android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:text="@string/carrots"
                 android:textColor="#54910C"
                 android:textStyle="bold"
-                app:buttonTint="#54910C" />
+                app:buttonTint="#007144" />
 
             <CheckBox
                 android:id="@+id/checkBox_apple"
@@ -58,7 +58,7 @@
                 android:text="@string/apple"
                 android:textColor="#54910C"
                 android:textStyle="bold"
-                app:buttonTint="#54910C" />
+                app:buttonTint="#007144" />
 
             <CheckBox
                 android:id="@+id/checkBox_banana"
@@ -67,7 +67,7 @@
                 android:text="@string/banana"
                 android:textColor="#54910C"
                 android:textStyle="bold"
-                app:buttonTint="#54910C" />
+                app:buttonTint="#007144" />
 
             <CheckBox
                 android:id="@+id/checkBox_milkshake"
@@ -76,34 +76,34 @@
                 android:text="@string/milkshake"
                 android:textColor="#54910C"
                 android:textStyle="bold"
-                app:buttonTint="#54910C" />
+                app:buttonTint="#007144" />
 
             <CheckBox
                 android:id="@+id/checkBox_cheeseburger"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/cheeseburger"
-                android:textColor="#D30808"
+                android:textColor="#ED4255"
                 android:textStyle="bold"
-                app:buttonTint="#D30808" />
+                app:buttonTint="#A20417" />
 
             <CheckBox
                 android:id="@+id/checkBox_hamburger"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/hamburger"
-                android:textColor="#D30808"
+                android:textColor="#ED4255"
                 android:textStyle="bold"
-                app:buttonTint="#D30808" />
+                app:buttonTint="#A20417" />
 
             <CheckBox
                 android:id="@+id/checkBox_hot_dog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/hot_dog"
-                android:textColor="#D30808"
+                android:textColor="#ED4255"
                 android:textStyle="bold"
-                app:buttonTint="#D30808" />
+                app:buttonTint="#A20417" />
 
         </LinearLayout>
     </ScrollView>

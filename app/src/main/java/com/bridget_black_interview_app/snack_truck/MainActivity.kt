@@ -1,7 +1,6 @@
 package com.bridget_black_interview_app.snack_truck
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import androidx.appcompat.app.AlertDialog
@@ -34,8 +33,6 @@ class MainActivity : AppCompatActivity() {
             buildOrderSummary()
             // Show the AlertDialog and place order.
             showOrderSummary()
-            // Clear order items/summary for next user.
-            _orderSummary.clear()
         }
     }
 
@@ -92,36 +89,38 @@ class MainActivity : AppCompatActivity() {
     private fun showOrderSummary() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setTitle("Place an order for:")
-        var message: String = ""
-        for (snack in _orderSummary) {
-            message += "${snack.toString()}\n"
-        }
-        builder.setMessage(message)
+        builder.setMessage(listToString(_orderSummary))
 
         builder.setPositiveButton("Purchase") { dialog, which ->
-            // Stub for sending the order.
-            completeTransaction(_orderSummary)
-
             /*
-            After the order submission and checkbox deselect are successful, close the AlertDialog. If unsuccessful, alert
-            the user and proceed with failure causes.
+            TODO: If the order submission is unsuccessful, alert the user and proceed with
+             failure causes, try catch.
              */
+            completeTransaction(_orderSummary)
             dialog.dismiss()
-            // Clear the CheckBoxes.
             deselectCheckBoxes()
-            // Clear the CheckBox List.
-            _checkedBoxes.clear()
+            clearLists()
         }
         builder.setNegativeButton("Cancel") { dialog, which ->
             dialog.dismiss()
-            // Clear the CheckBoxes.
             deselectCheckBoxes()
-            // Clear the CheckBox List.
-            _checkedBoxes.clear()
+            clearLists()
         }
+//        builder.setNeutralButton("Edit") { dialog, which ->
+//            dialog.dismiss()
+//            clearLists()
+//        }
 
         val alertDialog: AlertDialog = builder.create()
         alertDialog.show()
+    }
+
+    private fun listToString(order: MutableList<String>): String {
+        var message = ""
+        for (snack in order) {
+            message += "$snack\n"
+        }
+        return message
     }
 
     private fun deselectCheckBoxes() {
@@ -130,6 +129,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun clearLists() {
+        _checkedBoxes.clear()
+        _orderSummary.clear()
+    }
+    
     private fun completeTransaction(_orderItems: List<String>) {
         // TODO: Network service for actually placing the order isn't built yet, place call here.
     }

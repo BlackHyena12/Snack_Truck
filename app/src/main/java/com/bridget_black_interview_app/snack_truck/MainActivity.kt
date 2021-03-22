@@ -7,52 +7,39 @@ import android.widget.CheckBox
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
-// TODO: remove TAG after project completion.
-private const val TAG = "MainActivity"
-
 /**
  * MainActivity gathers a user's Snack Truck order and submits it to be processed.
  *
  * @author Bridget Black
  * 2021-03-19
- * Last Updated: 2021-03-20
+ * Last Updated: 2021-03-21
  */
 class MainActivity : AppCompatActivity() {
     // Concatenate the order items into a message to be displayed in the orderSummary TextView.
-    private var _orderItems: String? = ""
+    private val _orderSummary: MutableList<String> = mutableListOf()
     // Mutable list of the Checkboxes for deselecting after a completed or canceled order.
-    private val checkedBoxes: MutableList<CheckBox> = mutableListOf()
+    private val _checkedBoxes: MutableList<CheckBox> = mutableListOf()
 
     /**
      * Create [MainActivity] and listens for a user to submit an order, sends order for
      * completion and resets [MainActivity] for the next user order.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
-        // TODO: remove TAG after project completion.
-        Log.d(TAG, "onCreate called")
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val orderSubmit = findViewById<Button>(R.id.button_order)
-
         orderSubmit.setOnClickListener {
-            // TODO: remove TAG after project completion.
-            Log.d(TAG, "setOnClickListener called")
-
             // Build order summary.
             buildOrderSummary()
             // Show the AlertDialog and place order.
             showOrderSummary()
             // Clear order items/summary for next user.
-            _orderItems = ""
+            _orderSummary.clear()
         }
     }
 
     private fun buildOrderSummary() {
-        // TODO: remove TAG after project completion.
-        Log.d(TAG, "buildOrderSummary called")
-
         // Status of each checkbox to build orderItems String with.
         val checkboxFrenchFries: CheckBox = findViewById(R.id.checkBox_french_frie)
         val checkboxVeggieburger: CheckBox = findViewById(R.id.checkBox_veggieburger)
@@ -65,54 +52,55 @@ class MainActivity : AppCompatActivity() {
         val checkboxHotDog: CheckBox = findViewById(R.id.checkBox_hot_dog)
 
         if (checkboxFrenchFries.isChecked) {
-            _orderItems += "French Fries\n"
-            checkedBoxes.add(checkboxFrenchFries)
+            _orderSummary.add(checkboxFrenchFries.text.toString())
+            _checkedBoxes.add(checkboxFrenchFries)
         }
         if (checkboxVeggieburger.isChecked) {
-            _orderItems += "Veggieburger\n"
-            checkedBoxes.add(checkboxVeggieburger)
+            _orderSummary.add(checkboxVeggieburger.text.toString())
+            _checkedBoxes.add(checkboxVeggieburger)
         }
         if (checkboxCarrot.isChecked) {
-            _orderItems += "Carrots\n"
-            checkedBoxes.add(checkboxCarrot)
+            _orderSummary.add(checkboxCarrot.text.toString())
+            _checkedBoxes.add(checkboxCarrot)
         }
         if (checkboxApple.isChecked) {
-            _orderItems += "Apple\n"
-            checkedBoxes.add(checkboxApple)
+            _orderSummary.add(checkboxApple.text.toString())
+            _checkedBoxes.add(checkboxApple)
         }
         if (checkboxBanana.isChecked) {
-            _orderItems += "Banana\n"
-            checkedBoxes.add(checkboxBanana)
+            _orderSummary.add(checkboxBanana.text.toString())
+            _checkedBoxes.add(checkboxBanana)
         }
         if (checkboxMilkshake.isChecked) {
-            _orderItems += "Milkshake\n"
-            checkedBoxes.add(checkboxMilkshake)
+            _orderSummary.add(checkboxMilkshake.text.toString())
+            _checkedBoxes.add(checkboxMilkshake)
         }
         if (checkboxCheeseburger.isChecked) {
-            _orderItems += "Cheeseburger\n"
-            checkedBoxes.add(checkboxCheeseburger)
+            _orderSummary.add(checkboxCheeseburger.text.toString())
+            _checkedBoxes.add(checkboxCheeseburger)
         }
         if (checkboxHamburger.isChecked) {
-            _orderItems += "Hamburger\n"
-            checkedBoxes.add(checkboxHamburger)
+            _orderSummary.add(checkboxHamburger.text.toString())
+            _checkedBoxes.add(checkboxHamburger)
         }
         if (checkboxHotDog.isChecked) {
-            _orderItems += "Hot Dog\n"
-            checkedBoxes.add(checkboxHotDog)
+            _orderSummary.add(checkboxHotDog.text.toString())
+            _checkedBoxes.add(checkboxHotDog)
         }
     }
 
     private fun showOrderSummary() {
-        // TODO: remove TAG after project completion.
-        Log.d(TAG, "showOrderSummary called")
-
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setTitle("Place an order for:")
-        builder.setMessage(_orderItems)
+        var message: String = ""
+        for (snack in _orderSummary) {
+            message += "${snack.toString()}\n"
+        }
+        builder.setMessage(message)
 
         builder.setPositiveButton("Purchase") { dialog, which ->
             // Stub for sending the order.
-            completeTransaction(_orderItems)
+            completeTransaction(_orderSummary)
 
             /*
             After the order submission and checkbox deselect are successful, close the AlertDialog. If unsuccessful, alert
@@ -122,12 +110,14 @@ class MainActivity : AppCompatActivity() {
             // Clear the CheckBoxes.
             deselectCheckBoxes()
             // Clear the CheckBox List.
-            checkedBoxes.clear()
+            _checkedBoxes.clear()
         }
         builder.setNegativeButton("Cancel") { dialog, which ->
             dialog.dismiss()
+            // Clear the CheckBoxes.
+            deselectCheckBoxes()
             // Clear the CheckBox List.
-            checkedBoxes.clear()
+            _checkedBoxes.clear()
         }
 
         val alertDialog: AlertDialog = builder.create()
@@ -135,15 +125,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun deselectCheckBoxes() {
-        // TODO: remove TAG after project completion.
-        Log.d(TAG, "deselectCheckBoxes called")
-
-        for (snack in checkedBoxes) {
+        for (snack in _checkedBoxes) {
             snack.toggle()
         }
     }
 
-    private fun completeTransaction(_orderItems: String?) {
+    private fun completeTransaction(_orderItems: List<String>) {
         // TODO: Network service for actually placing the order isn't built yet, place call here.
     }
 }
